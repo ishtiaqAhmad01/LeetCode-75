@@ -1,0 +1,32 @@
+class Solution:
+    def compress(self, chars: list[str]) -> int:
+        prev = chars[0]
+        to_insert = 0
+        i = 0
+        count = 0
+
+        while i < len(chars):
+            if chars[i] == prev:
+                count += 1
+                i += 1
+            else:
+                chars[to_insert] = prev
+                to_insert += 1
+              
+                if count > 1:
+                    for digit in str(count):
+                        chars[to_insert] = digit
+                        to_insert += 1
+                        
+                prev = chars[i]
+                count = 1
+                i += 1
+                
+        chars[to_insert] = prev
+        to_insert += 1
+        if count > 1:
+            for digit in str(count):
+                chars[to_insert] = digit
+                to_insert += 1
+                
+        return to_insert

@@ -1,0 +1,25 @@
+class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        vowles = 0
+        
+        i = 0
+        while i < k:
+            if s[i] in "aeiouAEIOU":
+                vowles+=1
+            i+=1
+        curr_max = vowles
+
+        while i<len(s):
+            if s[i] in "aeiouAEIOU":
+                vowles+=1
+            if s[i-k] in "aeiouAEIOU":
+                vowles-=1
+            curr_max = max(curr_max, vowles)
+            i+=1
+        
+        return curr_max
+
+
+
+
+        

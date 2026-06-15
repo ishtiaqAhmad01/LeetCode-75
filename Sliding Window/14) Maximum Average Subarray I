@@ -1,0 +1,23 @@
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        current_sum = sum(nums[:k])
+        current_avg = current_sum/k
+
+        slow = 1
+        fast = k
+
+        while fast < len(nums):
+            current_sum-=nums[slow-1]
+            current_sum+=nums[fast]
+
+            current_avg = max(current_avg, current_sum/k)
+
+            fast+=1
+            slow+=1
+        
+        return current_avg
+        
+
+
+
+        

@@ -1,0 +1,27 @@
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        current_longest = 0
+        ans = 0
+        slow = 0
+        fast = 0
+        already_removed = False
+        all_ones = True
+        while fast < len(nums):
+            if nums[fast] == 1:
+                current_longest+=1
+                fast+=1
+            elif not already_removed:
+                all_ones = False
+                already_removed = True
+                fast+=1
+            else:
+                while nums[slow] == 1:
+                    current_longest-=1
+                    slow+=1
+                slow+=1
+                already_removed = False
+            
+            ans = max(ans, current_longest)
+        if all_ones:
+            ans-=1
+        return ans

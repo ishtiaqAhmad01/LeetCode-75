@@ -1,0 +1,11 @@
+from collections import Counter
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        hash1 = dict(Counter(word1))
+        hash2 = dict(Counter(word2))
+
+        if hash1.keys() != hash2.keys():
+            return False
+
+        return sorted(hash1.values()) == sorted(hash2.values())
+

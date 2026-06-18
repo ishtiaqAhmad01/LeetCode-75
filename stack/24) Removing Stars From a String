@@ -1,0 +1,17 @@
+class Solution:
+    def removeStars(self, s: str) -> str:
+        stack = ["-"]*len(s)
+        pointer = 0
+
+        for i in s:
+            if i == "*":
+                pointer-=1
+            else:
+                stack[pointer] = i
+                pointer+=1
+        
+        ans = "".join(stack[:pointer])
+
+        return ans
+
+        

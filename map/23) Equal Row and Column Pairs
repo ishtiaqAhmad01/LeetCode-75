@@ -1,0 +1,16 @@
+class Solution:
+    def equalPairs(self, grid: List[List[int]]) -> int:
+        rows_hash = {}
+        ans = 0
+
+        for row in grid:
+            if tuple(row) in rows_hash:
+                rows_hash[tuple(row)] += 1
+            else:
+                rows_hash[tuple(row)] = 1
+
+        for col in zip(*grid):
+            if col in rows_hash:
+                ans+=rows_hash[col]
+
+        return ans 

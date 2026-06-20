@@ -1,0 +1,21 @@
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        ans = ""
+        for i in s:
+            if i != "]":
+                stack.append(i)
+            else:
+                current = ""
+                while stack[-1] != "[":
+                    current = stack.pop() + current
+                stack.pop()
+
+                number = ""
+                while stack and stack[-1].isdigit():
+                    number = stack.pop() + number
+                stack.append(current*int(number))
+        
+        return "".join(stack)
+
+        

@@ -1,0 +1,33 @@
+class Solution:
+    def predictPartyVictory(self, senate: str) -> str:
+        queue = deque(senate)
+        
+        R_pending = 0
+        D_pending = 0
+        R_active = queue.count("R")
+        D_active = queue.count("D")
+
+        while R_active > 0 and D_active > 0:
+            if queue[0] == "R":
+                current = queue.popleft()
+                if R_pending:
+                    R_active-=1
+                    R_pending-=1
+                else:
+                    D_pending+=1
+                    queue.append(current)
+            else:
+                current = queue.popleft()
+                if D_pending:
+                    D_active-=1
+                    D_pending-=1
+                else:
+                    R_pending+=1
+                    queue.append(current)
+        
+        if R_active > 0:
+            return "Radiant"
+        
+        return "Dire"
+
+

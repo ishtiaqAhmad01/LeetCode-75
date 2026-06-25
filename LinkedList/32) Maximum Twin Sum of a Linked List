@@ -1,0 +1,21 @@
+class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        arr = []
+
+        temp = head
+
+        while temp:
+            arr.append(temp.val)
+            temp = temp.next
+        
+        left = 0
+        right = len(arr)-1
+        curr_max = 0
+
+        while left < right:
+            curr_max = max(curr_max, arr[left]+arr[right])
+            left+=1
+            right-=1
+        
+        return curr_max
+        
